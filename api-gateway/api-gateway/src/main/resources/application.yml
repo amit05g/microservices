@@ -1,0 +1,22 @@
+server:
+  port: 8084
+
+
+eureka:
+  instance:
+    hostname: localhost
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-srevice
+          predicates:
+            - Path=/customer/**
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/account/**
